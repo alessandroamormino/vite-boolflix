@@ -24,6 +24,7 @@ export default {
         } else {
           this.store.movies = res.data.results;
           this.store.hasResult = true;
+          console.log(string);
         }
       }).catch((error) => {
         alert(`Error: ${error.response.status}`);

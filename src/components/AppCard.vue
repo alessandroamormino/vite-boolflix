@@ -1,12 +1,24 @@
 <script>
+import "/node_modules/flag-icons/css/flag-icons.min.css";
 export default {
   name: 'AppCard',
   data() {
-    return {}
+    return {
+      language: '',
+    }
   },
   props: {
     movies: Object,
   },
+  created() {
+    this.flag();
+  },
+  methods: {
+    flag() {
+      let lang = this.movies.original_language;
+      this.language = lang == 'en' ? lang = 'fi-us' : 'fi-' + lang;
+    }
+  }
 }
 </script>
 <template>
@@ -16,7 +28,9 @@ export default {
       <li v-if="movies.title != movies.original_title">
         Titolo Originale: {{ movies.original_title }}
       </li>
-      <li>Lingua: {{ movies.original_language }}</li>
+      <li>
+        Lingua: {{ movies.original_language }} <span class='fi' :class="this.language"></span>
+      </li>
       <li>Voto: {{ movies.vote_average }}</li>
     </ul>
   </div>
