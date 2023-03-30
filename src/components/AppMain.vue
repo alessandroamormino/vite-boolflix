@@ -15,7 +15,9 @@ export default {
     <div class="card" v-for="movie in this.store.movies">
       <ul>
         <li>Titolo: {{ movie.title }}</li>
-        <li>Titolo Originale: {{ movie.original_title }}</li>
+        <li v-if="movie.title != movie.original_title">
+          Titolo Originale: {{ movie.original_title }}
+        </li>
         <li>Lingua: {{ movie.original_language }}</li>
         <li>Voto: {{ movie.vote_average }}</li>
       </ul>
