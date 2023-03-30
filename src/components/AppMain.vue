@@ -11,6 +11,7 @@ export default {
 </script>
 <template>
   <div id="main-container">
+    <h1>Movies_</h1>
     <div class="card" v-for="movie in this.store.movies">
       <ul>
         <li>Titolo: {{ movie.title }}</li>
