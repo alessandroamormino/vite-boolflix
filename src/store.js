@@ -6,4 +6,5 @@ export const store = reactive({
   key: '?api_key=5f71b0abc619b6dae214e6e6f5ef32f7',
   movies: [],
   trendingMovies: '/trending/movie/week',
+  hasResult: true,
 })
