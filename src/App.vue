@@ -15,12 +15,19 @@ export default {
       alert(`Error: ${error.response.status}`);
     });
   },
-  components: { AppHeader }
+  methods: {
+    searchMovie() {
+      console.log(this.store.searchText);
+    }
+  },
+  components: {
+    AppHeader,
+  }
 }
 </script>
 
 <template>
-  <AppHeader></AppHeader>
+  <AppHeader @performSearch="searchMovie()"></AppHeader>
 </template>
 
 <style lang="scss" scoped></style>
