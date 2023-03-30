@@ -2,6 +2,7 @@
 import { store } from "./store.js";
 import axios from "axios";
 import AppHeader from "./components/AppHeader.vue";
+import AppMain from "./components/AppMain.vue";
 export default {
   data() {
     return {
@@ -9,8 +10,9 @@ export default {
     };
   },
   created() {
-    axios.get("https://api.themoviedb.org/3/search/movie?api_key=5f71b0abc619b6dae214e6e6f5ef32f7&query=titanic").then((res) => {
-      console.log(res);
+    let requestAPI = `${this.store.stringAPI}${this.store.trendingMovies}${this.store.key}`;
+    axios.get(requestAPI).then((res) => {
+      this.store.movies = res.data.results;
     }).catch((error) => {
       alert(`Error: ${error.response.status}`);
     });
@@ -22,12 +24,14 @@ export default {
   },
   components: {
     AppHeader,
+    AppMain,
   }
 }
 </script>
 
 <template>
   <AppHeader @performSearch="searchMovie()"></AppHeader>
+  <AppMain></AppMain>
 </template>
 
 <style lang="scss" scoped></style>
