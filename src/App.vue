@@ -34,7 +34,6 @@ export default {
       if (this.store.searchText != '') {
         requestAPI = `${this.store.stringAPI}${this.store.movieStringAPI}${this.store.key}&language=it&query=${this.store.searchText}`;
         this.callAPI(requestAPI);
-        console.log(requestAPI);
       } else {
         requestAPI = `${this.store.stringAPI}${this.store.trendingMovies}${this.store.key}`;
         this.callAPI(requestAPI);

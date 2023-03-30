@@ -14,7 +14,7 @@ export default {
 <template>
   <div id="main-container">
     <h1>Movies_</h1>
-    <AppCard :movies="this.store.movies"></AppCard>
+    <AppCard v-for="movie in this.store.movies" :movies="movie"></AppCard>
   </div>
 </template>
 <style lang="scss" scoped></style>

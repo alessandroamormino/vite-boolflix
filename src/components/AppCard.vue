@@ -5,19 +5,19 @@ export default {
     return {}
   },
   props: {
-    movies: Array,
+    movies: Object,
   },
 }
 </script>
 <template>
-  <div class="card" v-for="movie in movies">
+  <div class="card">
     <ul>
-      <li>Titolo: {{ movie.title }}</li>
-      <li v-if="movie.title != movie.original_title">
-        Titolo Originale: {{ movie.original_title }}
+      <li>Titolo: {{ movies.title }}</li>
+      <li v-if="movies.title != movies.original_title">
+        Titolo Originale: {{ movies.original_title }}
       </li>
-      <li>Lingua: {{ movie.original_language }}</li>
-      <li>Voto: {{ movie.vote_average }}</li>
+      <li>Lingua: {{ movies.original_language }}</li>
+      <li>Voto: {{ movies.vote_average }}</li>
     </ul>
   </div>
 </template>
