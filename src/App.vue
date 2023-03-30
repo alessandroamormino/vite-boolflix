@@ -30,7 +30,6 @@ export default {
       });
     },
     searchMovie() {
-      console.log(this.store.searchText);
       if (this.store.searchText != '') {
         requestAPI = `${this.store.stringAPI}${this.store.movieStringAPI}${this.store.key}&language=it&query=${this.store.searchText}`;
         this.callAPI(requestAPI);
