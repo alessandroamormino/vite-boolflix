@@ -18,6 +18,9 @@ export default {
       let lang = this.movies.original_language;
       this.language = lang == 'en' ? lang = 'fi-us' : 'fi-' + lang;
     }
+  },
+  updated() {
+    this.flag();
   }
 }
 </script>
