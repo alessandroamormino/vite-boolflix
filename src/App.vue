@@ -17,7 +17,6 @@ export default {
     requestAPI = `${this.store.stringAPI}${this.store.path}${this.store.key}&language=it-IT&append_to_response=images&include_image_language=it`;
     // Richiamo funzione che fa la chiamata axios dell'API
     this.callAPI(requestAPI);
-    console.log(requestAPI);
   },
   methods: {
     // Funzione che fa la chiamata axios dell'API

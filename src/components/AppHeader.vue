@@ -22,13 +22,14 @@ export default {
   <nav>
     <div class="nav-left">
       <ul>
-        <li><a href="#" @click="searchMovies()">Movies</a></li>
-        <li><a href="#" @click="searchTvShows(), $emit('showsTrending')">TV Shows</a></li>
+        <li><a href="#" @click="searchMovies()">Film</a></li>
+        <li><a href="#" @click="searchTvShows(), $emit('showsTrending')">Serie TV</a></li>
       </ul>
     </div>
     <div class="nav-right">
       <div id="header-container">
-        <input type="text" v-model="store.searchText" @keyup.enter="$emit('performSearch')" placeholder="Search title..">
+        <input type="text" v-model="store.searchText" @keyup.enter="$emit('performSearch')"
+          placeholder="Cerca un titolo..">
         <button class="btn" @click="$emit('performSearch')">Search</button>
       </div>
     </div>
