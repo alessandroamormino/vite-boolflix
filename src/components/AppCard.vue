@@ -65,6 +65,7 @@ export default {
       <span v-if="movies.title != movies.original_title">Titolo Originale: {{ movies.original_title }}</span>
       <span>Lingua: <span class='fi' :class="this.language"></span></span>
       <div class="ratings">
+        <!-- import fontawesome icon -->
         Voto: <font-awesome-icon v-for="icon in getRatings(movies)" :icon="['fas', 'star']" class="star" />
       </div>
       <p v-if="movies.overview != ''">Overview: {{ movies.overview }}</p>
@@ -80,6 +81,7 @@ export default {
       <span v-if="series.name != series.original_name">Titolo Originale: {{ series.original_name }}</span>
       <span>Lingua: <span class='fi' :class="this.language"></span></span>
       <div class="ratings">
+        <!-- import fontawesome icon -->
         <font-awesome-icon v-for="icon in getRatings(movies)" :icon="['fas', 'star']" class="star" />
       </div>
       <p v-if="series.overview != ''">Overview: {{ series.overview }}</p>
