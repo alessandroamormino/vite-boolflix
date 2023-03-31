@@ -20,4 +20,8 @@ export default {
     <AppCard v-else v-for="serie in this.store.series" :series="serie"></AppCard>
   </div>
 </template>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+#main-container {
+  padding: 2em;
+}
+</style>

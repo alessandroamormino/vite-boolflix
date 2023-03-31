@@ -52,6 +52,8 @@ nav {
   height: 80px;
   width: 100%;
 
+  background-color: #212121;
+
   .nav-left {
     ul {
       display: flex;

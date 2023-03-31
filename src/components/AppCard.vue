@@ -32,6 +32,10 @@ export default {
         lang = 'fi-jp';
       } else if (lang == 'ko') {
         lang = 'fi-kr';
+      } else if (lang == 'uk') {
+        lang = 'fi-gb';
+      } else if (lang == 'zh') {
+        lang = 'fi-cn';
       } else {
         lang = 'fi-' + lang;
       }
@@ -53,7 +57,7 @@ export default {
         Titolo Originale: {{ movies.original_title }}
       </li>
       <li>
-        Lingua: {{ movies.original_language }} <span class='fi' :class="this.language"></span>
+        Lingua: <span class='fi' :class="this.language"></span>
       </li>
       <li>Voto: {{ movies.vote_average }}</li>
     </ul>
@@ -65,7 +69,7 @@ export default {
         Titolo Originale: {{ series.original_name }}
       </li>
       <li>
-        Lingua: {{ series.original_language }} <span class='fi' :class="this.language"></span>
+        Lingua: <span class='fi' :class="this.language"></span>
       </li>
       <li>Voto: {{ series.vote_average }}</li>
     </ul>
