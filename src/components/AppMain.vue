@@ -15,13 +15,24 @@ export default {
   <div id="main-container">
     <h1 v-if="this.store.contentSearch == '' || this.store.contentSearch == 'movies' ? true : false">Movies</h1>
     <h1 v-else>TV Shows</h1>
-    <AppCard v-if="this.store.contentSearch == '' || this.store.contentSearch == 'movies' ? true : false"
-      v-for="movie in this.store.movies" :movies="movie"></AppCard>
-    <AppCard v-else v-for="serie in this.store.series" :series="serie"></AppCard>
+    <div id="card-container">
+      <AppCard v-if="this.store.contentSearch == '' || this.store.contentSearch == 'movies' ? true : false"
+        v-for="movie in this.store.movies" :movies="movie"></AppCard>
+      <AppCard v-else v-for="serie in this.store.series" :series="serie"></AppCard>
+    </div>
   </div>
 </template>
 <style lang="scss" scoped>
 #main-container {
   padding: 2em;
+
+  #card-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    // flex
+  }
 }
 </style>

@@ -70,6 +70,7 @@ export default {
         requestAPI = `${this.store.stringAPI}${this.store.path}${this.store.key}`;
         this.callAPI(requestAPI);
       }
+      this.store.searchText = '';
     },
     // Funzione per ricercare i film
     searchShows() {
@@ -87,6 +88,7 @@ export default {
         requestAPI = `${this.store.stringAPI}${this.store.path}${this.store.key}`;
         this.callAPI(requestAPI);
       }
+      this.store.searchText = '';
     }
   },
   components: {

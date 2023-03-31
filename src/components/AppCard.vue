@@ -52,16 +52,12 @@ export default {
 <template>
   <div v-if="this.store.contentSearch == '' || this.store.contentSearch == 'movies' ? true : false" class="card">
     <img :src="this.store.baseURL + 'w342' + movies.poster_path" :alt="movies.title">
-    <ul>
-      <li>Titolo: {{ movies.title }}</li>
-      <li v-if="movies.title != movies.original_title">
-        Titolo Originale: {{ movies.original_title }}
-      </li>
-      <li>
-        Lingua: <span class='fi' :class="this.language"></span>
-      </li>
-      <li>Voto: {{ movies.vote_average }}</li>
-    </ul>
+    <div class="card-info">
+      <span>Titolo: {{ movies.title }}</span>
+      <span v-if="movies.title != movies.original_title">Titolo Originale: {{ movies.original_title }}</span>
+      <span>Lingua: <span class='fi' :class="this.language"></span></span>
+      <span>Voto: {{ movies.vote_average }}</span>
+    </div>
   </div>
   <div v-else class="card">
     <img :src="this.store.baseURL + 'w342' + series.poster_path" :alt="series.name">
@@ -79,8 +75,12 @@ export default {
 </template>
 <style lang="scss" scoped>
 .card {
-  border: 1px solid black;
-  margin-bottom: 1em;
-  // test
+  display: flex;
+  flex-flow: column nowrap;
+
+  .card-info {
+    display: flex;
+    flex-flow: column nowrap;
+  }
 }
 </style>

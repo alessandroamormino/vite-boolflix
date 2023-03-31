@@ -52,7 +52,7 @@ nav {
   height: 80px;
   width: 100%;
 
-  background-color: #212121;
+  background-color: #000;
 
   .nav-left {
     ul {
