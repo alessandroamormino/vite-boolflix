@@ -6,7 +6,8 @@ export default {
     return {
       store,
     }
-  }
+  },
+  emit: ['performSearch'],
 }
 </script>
 <template>
