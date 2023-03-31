@@ -14,9 +14,10 @@ export default {
   // All'avvio dell'app mostro i film trending della settimana
   created() {
     this.store.path = '/trending/movie/week';
-    requestAPI = `${this.store.stringAPI}${this.store.path}${this.store.key}`;
+    requestAPI = `${this.store.stringAPI}${this.store.path}${this.store.key}&language=it-IT&append_to_response=images&include_image_language=it`;
     // Richiamo funzione che fa la chiamata axios dell'API
     this.callAPI(requestAPI);
+    console.log(requestAPI);
   },
   methods: {
     // Funzione che fa la chiamata axios dell'API
@@ -60,7 +61,7 @@ export default {
       // Valorizzo la path con il percorso per i movies
       this.store.path = '/search/movie';
       // valorizzo i parametri da passare
-      this.store.parameters = `&language=it-IT&query=${encodeURIComponent(this.store.searchText)}`
+      this.store.parameters = `&language=it-IT&append_to_response=images&include_image_language=it&query=${encodeURIComponent(this.store.searchText)}`
       if (this.store.searchText != '') {
         requestAPI = `${this.store.stringAPI}${this.store.path}${this.store.key}${this.store.parameters}`;
         this.callAPI(requestAPI);
@@ -70,14 +71,13 @@ export default {
         requestAPI = `${this.store.stringAPI}${this.store.path}${this.store.key}`;
         this.callAPI(requestAPI);
       }
-      this.store.searchText = '';
     },
     // Funzione per ricercare i film
     searchShows() {
       // Valorizzo la path con il percorso per i movies
       this.store.path = '/search/tv';
       // valorizzo i parametri da passare
-      this.store.parameters = `&language=it-IT&query=${encodeURIComponent(this.store.searchText)}`
+      this.store.parameters = `&language=it-IT&append_to_response=images&include_image_language=it&query=${encodeURIComponent(this.store.searchText)}`
       if (this.store.searchText != '') {
         requestAPI = `${this.store.stringAPI}${this.store.path}${this.store.key}${this.store.parameters}`;
         console.log(requestAPI);
@@ -88,8 +88,7 @@ export default {
         requestAPI = `${this.store.stringAPI}${this.store.path}${this.store.key}`;
         this.callAPI(requestAPI);
       }
-      this.store.searchText = '';
-    }
+    },
   },
   components: {
     AppHeader,

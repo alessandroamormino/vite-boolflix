@@ -51,7 +51,8 @@ export default {
 </script>
 <template>
   <div v-if="this.store.contentSearch == '' || this.store.contentSearch == 'movies' ? true : false" class="card">
-    <img :src="this.store.baseURL + 'w342' + movies.poster_path" :alt="movies.title">
+    <img v-if="movies.poster_path != null" :src="this.store.baseURL + 'w342' + movies.poster_path" :alt="movies.title">
+    <img v-else src="/img/placeholder.svg" alt="Placeholder_Image">
     <div class="card-info">
       <span>Titolo: {{ movies.title }}</span>
       <span v-if="movies.title != movies.original_title">Titolo Originale: {{ movies.original_title }}</span>
