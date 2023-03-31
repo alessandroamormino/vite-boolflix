@@ -45,7 +45,7 @@ export default {
       this.language = lang;
     },
     getRatings(object) {
-      return Math.floor(Math.round(object.vote_average) / 2);
+      return Math.round(object.vote_average / 2);
     }
   },
   updated() {
@@ -82,7 +82,7 @@ export default {
       <span>Lingua: <span class='fi' :class="this.language"></span></span>
       <div class="ratings">
         <!-- import fontawesome icon -->
-        <font-awesome-icon v-for="icon in getRatings(movies)" :icon="['fas', 'star']" class="star" />
+        <font-awesome-icon v-for="icon in getRatings(series)" :icon="['fas', 'star']" class="star" />
       </div>
       <p v-if="series.overview != ''">Overview: {{ series.overview }}</p>
     </div>
