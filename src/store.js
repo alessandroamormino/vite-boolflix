@@ -10,8 +10,12 @@ export const store = reactive({
   key: '?api_key=5f71b0abc619b6dae214e6e6f5ef32f7',
   // Dichiaro la variabile per i parametri da mandare alla chiamata API
   parameters: '',
-  // Dichiaro array che popolerò dalla chiamata API
+  // Dichiaro array per i movies che popolerò dalla chiamata API
   movies: [],
+  // Dichiaro array per le tv shows che popolerò dalla chiamata API
+  series: [],
   // Booleana per gestire se la mia ricerca stampa risultati
   hasResult: true,
+  // Valorizzo una variabile per determinare se fare la ricerca su film o serie tv
+  contentSearch: '',
 })

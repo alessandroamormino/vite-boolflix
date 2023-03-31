@@ -1,14 +1,18 @@
 <script>
 import "/node_modules/flag-icons/css/flag-icons.min.css";
+import { store } from "../store.js";
+let lang;
 export default {
   name: 'AppCard',
   data() {
     return {
       language: '',
+      store,
     }
   },
   props: {
     movies: Object,
+    series: Object,
   },
   created() {
     this.flag();
@@ -16,7 +20,11 @@ export default {
   methods: {
     // funzione che gestisce alcune eccezioni sulla ISO week per le flag
     flag() {
-      let lang = this.movies.original_language;
+      if (this.store.contentSearch == '' || this.store.contentSearch == 'movies') {
+        lang = this.movies.original_language;
+      } else {
+        lang = this.series.original_language;
+      }
 
       if (lang == 'en') {
         lang = 'fi-us';
@@ -38,7 +46,7 @@ export default {
 }
 </script>
 <template>
-  <div class="card">
+  <div v-if="this.store.contentSearch == '' || this.store.contentSearch == 'movies' ? true : false" class="card">
     <ul>
       <li>Titolo: {{ movies.title }}</li>
       <li v-if="movies.title != movies.original_title">
@@ -48,6 +56,18 @@ export default {
         Lingua: {{ movies.original_language }} <span class='fi' :class="this.language"></span>
       </li>
       <li>Voto: {{ movies.vote_average }}</li>
+    </ul>
+  </div>
+  <div v-else class="card">
+    <ul>
+      <li>Titolo: {{ series.name }}</li>
+      <li v-if="series.name != series.original_name">
+        Titolo Originale: {{ series.original_name }}
+      </li>
+      <li>
+        Lingua: {{ series.original_language }} <span class='fi' :class="this.language"></span>
+      </li>
+      <li>Voto: {{ series.vote_average }}</li>
     </ul>
   </div>
 </template>

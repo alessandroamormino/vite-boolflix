@@ -13,8 +13,11 @@ export default {
 </script>
 <template>
   <div id="main-container">
-    <h1>Movies_</h1>
-    <AppCard v-for="movie in this.store.movies" :movies="movie"></AppCard>
+    <h1 v-if="this.store.contentSearch == '' || this.store.contentSearch == 'movies' ? true : false">Movies_</h1>
+    <h1 v-else>TV Shows_</h1>
+    <AppCard v-if="this.store.contentSearch == '' || this.store.contentSearch == 'movies' ? true : false"
+      v-for="movie in this.store.movies" :movies="movie"></AppCard>
+    <AppCard v-else v-for="serie in this.store.series" :series="serie"></AppCard>
   </div>
 </template>
 <style lang="scss" scoped></style>

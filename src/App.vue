@@ -22,16 +22,38 @@ export default {
     // Funzione che fa la chiamata axios dell'API
     callAPI(string) {
       axios.get(string).then((res) => {
-        if (res.data.results.length == 0) {
-          this.store.movies = [];
-          this.store.hasResult = false;
+        if (this.store.contentSearch == 'movies') {
+          if (res.data.results.length == 0) {
+            this.store.movies = [];
+            this.store.hasResult = false;
+          } else {
+            this.store.movies = res.data.results;
+            this.store.hasResult = true;
+          }
+        } else if (this.store.contentSearch == 'shows') {
+          if (res.data.results.length == 0) {
+            this.store.series = [];
+            this.store.hasResult = false;
+          } else {
+            this.store.series = res.data.results;
+            this.store.hasResult = true;
+          }
         } else {
-          this.store.movies = res.data.results;
-          this.store.hasResult = true;
+          if (res.data.results.length == 0) {
+            this.store.movies = [];
+            this.store.hasResult = false;
+          } else {
+            this.store.movies = res.data.results;
+            this.store.hasResult = true;
+          }
         }
       }).catch((error) => {
         alert(`Error: ${error.response.status}`);
       });
+    },
+    // funzione per determinare se ricercare per serie tv o movie 
+    readContentSearch() {
+      this.store.contentSearch == 'movies' ? this.searchMovie() : this.store.contentSearch == 'shows' ? this.searchShows() : this.searchMovie();
     },
     // Funzione per ricercare i film
     searchMovie() {
@@ -48,6 +70,23 @@ export default {
         requestAPI = `${this.store.stringAPI}${this.store.path}${this.store.key}`;
         this.callAPI(requestAPI);
       }
+    },
+    // Funzione per ricercare i film
+    searchShows() {
+      // Valorizzo la path con il percorso per i movies
+      this.store.path = '/search/tv';
+      // valorizzo i parametri da passare
+      this.store.parameters = `&language=it-IT&query=${encodeURIComponent(this.store.searchText)}`
+      if (this.store.searchText != '') {
+        requestAPI = `${this.store.stringAPI}${this.store.path}${this.store.key}${this.store.parameters}`;
+        console.log(requestAPI);
+        this.callAPI(requestAPI);
+      } else {
+        // se lancio una ricerca a vuoto mi restituisce i film trending della settimana
+        this.store.path = '/trending/tv/week';
+        requestAPI = `${this.store.stringAPI}${this.store.path}${this.store.key}`;
+        this.callAPI(requestAPI);
+      }
     }
   },
   components: {
@@ -59,7 +98,7 @@ export default {
 </script>
 
 <template>
-  <AppHeader @performSearch="searchMovie()"></AppHeader>
+  <AppHeader @performSearch="readContentSearch()"></AppHeader>
   <AppError v-if="this.store.hasResult == false"></AppError>
   <AppMain v-if="this.store.hasResult"></AppMain>
 </template>
