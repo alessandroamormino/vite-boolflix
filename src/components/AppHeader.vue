@@ -14,24 +14,22 @@ export default {
     },
     searchTvShows() {
       this.store.contentSearch = 'shows';
-    }
+    },
   }
 }
 </script>
 <template>
   <nav>
     <div class="nav-left">
+      <img src="/img/logo.png" alt="logo Boolflix">
       <ul>
         <li><a href="#" @click="searchMovies()">Film</a></li>
         <li><a href="#" @click="searchTvShows(), $emit('showsTrending')">Serie TV</a></li>
       </ul>
     </div>
     <div class="nav-right">
-      <div id="header-container">
-        <input type="text" v-model="store.searchText" @keyup.enter="$emit('performSearch')"
-          placeholder="Cerca un titolo..">
-        <button class="btn" @click="$emit('performSearch')">Search</button>
-      </div>
+      <input type="text" v-model="store.searchText" @keyup.enter="$emit('performSearch')" placeholder="Cerca un titolo..">
+      <button class="btn" @click="$emit('performSearch')">Search</button>
     </div>
   </nav>
 </template>
@@ -48,7 +46,7 @@ nav {
   align-items: center;
   // flex
 
-  padding: 0 2em;
+  padding: 1em 2em;
 
   height: 80px;
   width: 100%;
@@ -56,6 +54,17 @@ nav {
   background-color: #000;
 
   .nav-left {
+    display: flex;
+    align-items: center;
+
+    gap: 2em;
+
+    height: 100%;
+
+    img {
+      height: 100%;
+    }
+
     ul {
       display: flex;
       gap: 1em;
@@ -73,6 +82,23 @@ nav {
         }
       }
     }
+  }
+
+  .nav-right {
+    display: flex;
+    gap: 1em;
+
+    input {
+      padding: .5em;
+      border: 1px solid #fff;
+      background-color: #030303;
+      color: #fff;
+
+      &:focus-visible {
+        outline: none;
+      }
+    }
+
   }
 
 }
