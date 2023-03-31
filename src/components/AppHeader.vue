@@ -7,7 +7,7 @@ export default {
       store,
     }
   },
-  emit: ['performSearch'],
+  emit: ['performSearch', 'showsTrending'],
   methods: {
     searchMovies() {
       this.store.contentSearch = 'movies';
@@ -23,7 +23,7 @@ export default {
     <div class="nav-left">
       <ul>
         <li><a href="#" @click="searchMovies()">Movies</a></li>
-        <li><a href="#" @click="searchTvShows()">TV Shows</a></li>
+        <li><a href="#" @click="searchTvShows(), $emit('showsTrending')">TV Shows</a></li>
       </ul>
     </div>
     <div class="nav-right">

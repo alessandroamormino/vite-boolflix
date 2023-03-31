@@ -98,7 +98,7 @@ export default {
 </script>
 
 <template>
-  <AppHeader @performSearch="readContentSearch()"></AppHeader>
+  <AppHeader @performSearch="readContentSearch()" @showsTrending="searchShows()"></AppHeader>
   <AppError v-if="this.store.hasResult == false"></AppError>
   <AppMain v-if="this.store.hasResult"></AppMain>
 </template>
