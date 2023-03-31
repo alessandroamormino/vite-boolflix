@@ -1,10 +1,17 @@
 import { reactive } from 'vue';
 export const store = reactive({
+  // prendo testo da input in AppHeader
   searchText: '',
+  // dichiaro percorso iniziale API
   stringAPI: 'https://api.themoviedb.org/3',
-  movieStringAPI: '/search/movie',
+  // Dichiaro vuota la path che popolerò al richiamo delle funzioni in App
+  path: '',
+  // Dichiaro la API KEY
   key: '?api_key=5f71b0abc619b6dae214e6e6f5ef32f7',
+  // Dichiaro la variabile per i parametri da mandare alla chiamata API
+  parameters: '',
+  // Dichiaro array che popolerò dalla chiamata API
   movies: [],
-  trendingMovies: '/trending/movie/week',
+  // Booleana per gestire se la mia ricerca stampa risultati
   hasResult: true,
 })

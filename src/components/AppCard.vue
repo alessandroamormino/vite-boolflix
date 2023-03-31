@@ -14,12 +14,25 @@ export default {
     this.flag();
   },
   methods: {
+    // funzione che gestisce alcune eccezioni sulla ISO week per le flag
     flag() {
       let lang = this.movies.original_language;
-      this.language = lang == 'en' ? lang = 'fi-us' : 'fi-' + lang;
+
+      if (lang == 'en') {
+        lang = 'fi-us';
+      } else if (lang == 'ja') {
+        lang = 'fi-jp';
+      } else if (lang == 'ko') {
+        lang = 'fi-kr';
+      } else {
+        lang = 'fi-' + lang;
+      }
+
+      this.language = lang;
     }
   },
   updated() {
+    // aggiorno le flag ad ogni aggiornamento del DOM
     this.flag();
   }
 }
