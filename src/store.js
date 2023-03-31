@@ -18,4 +18,6 @@ export const store = reactive({
   hasResult: true,
   // Valorizzo una variabile per determinare se fare la ricerca su film o serie tv
   contentSearch: '',
+  // Dichiaro l'URL base per le immagini
+  baseURL: 'https://image.tmdb.org/t/p/',
 })

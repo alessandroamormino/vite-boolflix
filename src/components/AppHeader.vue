@@ -28,7 +28,7 @@ export default {
     </div>
     <div class="nav-right">
       <div id="header-container">
-        <input type="text" v-model="store.searchText" @keyup.enter="$emit('performSearch')">
+        <input type="text" v-model="store.searchText" @keyup.enter="$emit('performSearch')" placeholder="Search title..">
         <button class="btn" @click="$emit('performSearch')">Search</button>
       </div>
     </div>

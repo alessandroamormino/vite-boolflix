@@ -51,6 +51,7 @@ export default {
 </script>
 <template>
   <div v-if="this.store.contentSearch == '' || this.store.contentSearch == 'movies' ? true : false" class="card">
+    <img :src="this.store.baseURL + 'w342' + movies.poster_path" :alt="movies.title">
     <ul>
       <li>Titolo: {{ movies.title }}</li>
       <li v-if="movies.title != movies.original_title">
@@ -63,6 +64,7 @@ export default {
     </ul>
   </div>
   <div v-else class="card">
+    <img :src="this.store.baseURL + 'w342' + series.poster_path" :alt="series.name">
     <ul>
       <li>Titolo: {{ series.name }}</li>
       <li v-if="series.name != series.original_name">
