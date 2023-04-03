@@ -99,6 +99,11 @@ nav {
       }
     }
 
+    .btn {
+      padding: .5em 1em;
+      background-color: #fff;
+      border: none;
+    }
   }
 
 }
