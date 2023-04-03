@@ -23,4 +23,6 @@ export const store = reactive({
   // Indice della card cliccata
   cardIndex: null,
   isCardOpen: false,
+  // Generi film
+  genreMovieList: [],
 })

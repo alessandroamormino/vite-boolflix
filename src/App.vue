@@ -17,8 +17,6 @@ export default {
     requestAPI = `${this.store.stringAPI}${this.store.path}${this.store.key}&language=it-IT&append_to_response=images&include_image_language=it`;
     // Richiamo funzione che fa la chiamata axios dell'API
     this.callAPI(requestAPI);
-    // Richiamo funzione che fa la chiamata axios dall'API per i generi
-    this.genreMovieAPI();
   },
   methods: {
     // Funzione che fa la chiamata axios dell'API
@@ -92,11 +90,14 @@ export default {
     },
     genreMovieAPI() {
       // valorizzo stringa da passare alla chiamata axios
-      let genreString = `${this.store.stringAPI}${this.store.genreMovieAPI}${this.store.key}&language=it-IT`;
+      this.store.path = '/movie/';
+      let movieId = this.store.movies[this.store.cardIndex].id;
+      let genreString = `${this.store.stringAPI}${this.store.path}${movieId}${this.store.key}&language=it-IT`;
       axios.get(genreString).then((response) => {
         this.genreMovieList = response.data.genres;
+        console.log(this.genreMovieList);
       });
-    }
+    },
   },
   components: {
     AppHeader,
@@ -109,7 +110,7 @@ export default {
 <template>
   <AppHeader @performSearch="readContentSearch()" @showsTrending="searchShows()"></AppHeader>
   <AppError v-if="this.store.hasResult == false"></AppError>
-  <AppMain v-if="this.store.hasResult"></AppMain>
+  <AppMain v-if="this.store.hasResult" @cardClick="genreMovieAPI()"></AppMain>
 </template>
 
 <style lang="scss" scoped></style>

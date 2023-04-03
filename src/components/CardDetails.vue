@@ -11,6 +11,9 @@ export default {
     closeDetail() {
       this.store.isCardOpen = false;
     }
+  },
+  created() {
+    // console.log(this.genreMovieList);
   }
 }
 </script>
@@ -29,7 +32,10 @@ export default {
       <h2>{{ this.store.movies[this.store.cardIndex].title }}</h2>
       <h3>({{ this.store.movies[this.store.cardIndex].original_title }})</h3>
       <p>{{ this.store.movies[this.store.cardIndex].overview }}</p>
-      <div class="cast">
+      <div class="genres">
+        <h3>Genres: </h3>
+      </div>
+      <div class=" cast">
         <h3>Cast: </h3>
       </div>
     </div>
