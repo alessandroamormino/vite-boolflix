@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import './style.scss'
 import App from './App.vue'
+import "/node_modules/flag-icons/css/flag-icons.min.css";
 // fonts
 import "@fontsource/bebas-neue";
 

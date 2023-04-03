@@ -1,5 +1,5 @@
 <script>
-import "/node_modules/flag-icons/css/flag-icons.min.css";
+
 import { store } from "../store.js";
 
 
@@ -51,7 +51,7 @@ export default {
   updated() {
     // aggiorno le flag ad ogni aggiornamento del DOM
     this.flag();
-  }
+  },
 }
 </script>
 <template>
