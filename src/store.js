@@ -20,4 +20,10 @@ export const store = reactive({
   contentSearch: '',
   // Dichiaro l'URL base per le immagini
   baseURL: 'https://image.tmdb.org/t/p/',
+  // Dichiaro stringa per i generi
+  genreMovieList: [],
+  // Dichiaro stringa per chiamata Axios generi
+  genreMovieAPI: '/genre/movie/list',
+
+  genreMovieSearch: [],
 })

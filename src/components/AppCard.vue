@@ -55,6 +55,7 @@ export default {
 }
 </script>
 <template>
+  <!-- Movies -->
   <div v-if="this.store.contentSearch == '' || this.store.contentSearch == 'movies' ? true : false" class="card">
     <div class="card-img">
       <img v-if="movies.poster_path != null" :src="this.store.baseURL + 'w342' + movies.poster_path" :alt="movies.title">
@@ -62,7 +63,7 @@ export default {
     </div>
     <div class="card-info">
       <span>Titolo: {{ movies.title }}</span>
-      <span v-if="movies.title != movies.original_title">Titolo Originale: {{ movies.original_title }}</span>
+      <span v-if="movies.title != movies.original_title">({{ movies.original_title }})</span>
       <span>Lingua: <span class='fi' :class="this.language"></span></span>
       <div class="ratings">
         <!-- import fontawesome icon -->
@@ -72,6 +73,7 @@ export default {
       <p v-if="movies.overview != ''">Overview: {{ movies.overview }}</p>
     </div>
   </div>
+  <!-- Series -->
   <div v-else class="card">
     <div class="card-img">
       <img v-if="series.poster_path != null" :src="this.store.baseURL + 'w342' + series.poster_path" :alt="series.name">
@@ -79,7 +81,7 @@ export default {
     </div>
     <div class="card-info">
       <span>Titolo: {{ series.name }}</span>
-      <span v-if="series.name != series.original_name">Titolo Originale: {{ series.original_name }}</span>
+      <span v-if="series.name != series.original_name">({{ series.original_name }})</span>
       <span>Lingua: <span class='fi' :class="this.language"></span></span>
       <div class="ratings">
         <!-- import fontawesome icon -->
@@ -96,9 +98,6 @@ export default {
 
   width: 342px;
   height: 500px;
-
-  flex-shrink: 0;
-  overflow-y: hidden;
 
   .card-img {
     width: 100%;
