@@ -107,6 +107,7 @@ export default {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      border-radius: 5px;
     }
   }
 
@@ -121,7 +122,8 @@ export default {
     padding: 1em;
     width: 100%;
     height: 100%;
-    background-color: #000;
+    background-color: #212121;
+    border-radius: 5px;
 
     .ratings {
       display: flex;

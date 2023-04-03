@@ -44,7 +44,7 @@ export default {
   gap: 1em;
 
   width: 1000px;
-  background-color: #000;
+  background-color: #212121;
 
 
   padding: 1em;
