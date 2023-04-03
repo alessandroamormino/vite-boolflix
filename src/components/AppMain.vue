@@ -28,11 +28,13 @@ export default {
 
   #card-container {
     display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
     align-items: center;
     gap: 1em;
+
     // flex
+    overflow-x: scroll;
   }
 }
 </style>

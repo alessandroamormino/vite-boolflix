@@ -97,6 +97,9 @@ export default {
   width: 342px;
   height: 500px;
 
+  flex-shrink: 0;
+  overflow-y: hidden;
+
   .card-img {
     width: 100%;
     height: 100%;
