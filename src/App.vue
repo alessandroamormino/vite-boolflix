@@ -66,6 +66,7 @@ export default {
       if (this.store.searchText != '') {
         requestAPI = `${this.store.stringAPI}${this.store.path}${this.store.key}${this.store.parameters}`;
         this.callAPI(requestAPI);
+        console.log(requestAPI);
       } else {
         // se lancio una ricerca a vuoto mi restituisce i film trending della settimana
         this.store.path = '/trending/movie/week';
