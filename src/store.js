@@ -22,4 +22,5 @@ export const store = reactive({
   baseURL: 'https://image.tmdb.org/t/p/',
   // Indice della card cliccata
   cardIndex: null,
+  isCardOpen: false,
 })
