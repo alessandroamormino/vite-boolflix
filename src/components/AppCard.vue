@@ -46,7 +46,7 @@ export default {
     },
     getRatings(object) {
       return Math.round(object.vote_average / 2);
-    }
+    },
   },
   updated() {
     // aggiorno le flag ad ogni aggiornamento del DOM
@@ -67,6 +67,7 @@ export default {
       <div class="ratings">
         <!-- import fontawesome icon -->
         Voto: <font-awesome-icon v-for="icon in getRatings(movies)" :icon="['fas', 'star']" class="star" />
+        <font-awesome-icon v-for="icon in 5 - getRatings(movies)" :icon="['fas', 'star']" class="star-dark" />
       </div>
       <p v-if="movies.overview != ''">Overview: {{ movies.overview }}</p>
     </div>
@@ -82,7 +83,8 @@ export default {
       <span>Lingua: <span class='fi' :class="this.language"></span></span>
       <div class="ratings">
         <!-- import fontawesome icon -->
-        <font-awesome-icon v-for="icon in getRatings(series)" :icon="['fas', 'star']" class="star" />
+        Voto: <font-awesome-icon v-for="icon in getRatings(series)" :icon="['fas', 'star']" class="star" />
+        <font-awesome-icon v-for="icon in 5 - getRatings(series)" :icon="['fas', 'star']" class="star-dark" />
       </div>
       <p v-if="series.overview != ''">Overview: {{ series.overview }}</p>
     </div>
@@ -124,6 +126,10 @@ export default {
 
       .star {
         color: yellow;
+
+        &-dark {
+          color: grey;
+        }
       }
     }
 
