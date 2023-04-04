@@ -88,16 +88,16 @@ export default {
         this.callAPI(requestAPI);
       }
     },
-    genreMovieAPI() {
-      // valorizzo stringa da passare alla chiamata axios
-      this.store.path = '/movie/';
-      let movieId = this.store.movies[this.store.cardIndex].id;
-      let genreString = `${this.store.stringAPI}${this.store.path}${movieId}${this.store.key}&language=it-IT`;
-      axios.get(genreString).then((response) => {
-        this.genreMovieList = response.data.genres;
-        console.log(this.genreMovieList);
-      });
-    },
+    // genreMovieAPI() {
+    //   // valorizzo stringa da passare alla chiamata axios
+    //   this.store.path = '/movie/';
+    //   let movieId = this.store.movies[this.store.cardIndex].id;
+    //   let genreString = `${this.store.stringAPI}${this.store.path}${movieId}${this.store.key}&language=it-IT`;
+    //   axios.get(genreString).then((response) => {
+    //     this.genreMovieList = response.data.genres;
+    //     console.log(this.genreMovieList);
+    //   });
+    // },
   },
   components: {
     AppHeader,
@@ -110,7 +110,8 @@ export default {
 <template>
   <AppHeader @performSearch="readContentSearch()" @showsTrending="searchShows()"></AppHeader>
   <AppError v-if="this.store.hasResult == false"></AppError>
-  <AppMain v-if="this.store.hasResult" @cardClick="genreMovieAPI()"></AppMain>
+  <!-- <AppMain v-if="this.store.hasResult" @cardClick="genreMovieAPI()"></AppMain> -->
+  <AppMain v-if="this.store.hasResult"></AppMain>
 </template>
 
 <style lang="scss" scoped></style>

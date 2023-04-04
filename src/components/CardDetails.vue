@@ -1,5 +1,6 @@
 <script>
 import { store } from "../store.js";
+import axios from "axios";
 export default {
   name: 'CardDetails',
   data() {
@@ -10,10 +11,16 @@ export default {
   methods: {
     closeDetail() {
       this.store.isCardOpen = false;
-    }
+    },
   },
   created() {
-    // console.log(this.genreMovieList);
+    // valorizzo stringa da passare alla chiamata axios
+    this.store.path = '/movie/';
+    let movieId = this.store.movies[this.store.cardIndex].id;
+    let genreString = `${this.store.stringAPI}${this.store.path}${movieId}${this.store.key}&language=it-IT`;
+    axios.get(genreString).then((response) => {
+      this.store.genreMovieList = response.data.genres;
+    });
   }
 }
 </script>
@@ -34,6 +41,9 @@ export default {
       <p>{{ this.store.movies[this.store.cardIndex].overview }}</p>
       <div class="genres">
         <h3>Genres: </h3>
+        <ul>
+          <li v-for="genre in this.store.genreMovieList">{{ genre.name }}</li>
+        </ul>
       </div>
       <div class=" cast">
         <h3>Cast: </h3>
@@ -42,6 +52,11 @@ export default {
   </div>
 </template>
 <style lang="scss" scoped>
+ul {
+  margin-left: 1em;
+  list-style-type: disc;
+}
+
 #card-details {
   position: relative;
 
@@ -63,7 +78,7 @@ export default {
   }
 
   .info-movie {
-    & * {
+    & *:not(li) {
       padding: .5em 0;
     }
   }

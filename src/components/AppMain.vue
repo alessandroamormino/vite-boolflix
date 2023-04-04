@@ -20,7 +20,7 @@ export default {
       this.store.cardIndex = index;
     },
   },
-  emit: ['cardClick'],
+  // emit: ['cardClick'],
 }
 </script>
 <template>
@@ -29,7 +29,7 @@ export default {
     <h1 v-else>Serie TV</h1>
     <div id="card-container" :class="this.store.isCardOpen ? 'blur' : ''">
       <AppCard v-if="this.store.contentSearch == '' || this.store.contentSearch == 'movies' ? true : false"
-        v-for="(movie, index) in this.store.movies" :movies="movie" @click="cardDetails(index), $emit('cardClick')">
+        v-for="(movie, index) in this.store.movies" :movies="movie" @click="cardDetails(index)">
       </AppCard>
       <AppCard v-else v-for="serie in this.store.series" :series="serie"></AppCard>
     </div>
