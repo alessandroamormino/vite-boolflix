@@ -12,15 +12,30 @@ export default {
     closeDetail() {
       this.store.isCardOpen = false;
     },
+    genreAPI() {
+      // valorizzo stringa da passare alla chiamata axios
+      this.store.path = '/movie/';
+      let movieId = this.store.movies[this.store.cardIndex].id;
+      let genreString = `${this.store.stringAPI}${this.store.path}${movieId}${this.store.key}&language=it-IT`;
+      axios.get(genreString).then((response) => {
+        this.store.genreMovieList = response.data.genres;
+      });
+    },
+    castAPI() {
+      // valorizzo stringa da passare alla chiamata axios
+      this.store.path = '/movie/';
+      let movieId = this.store.movies[this.store.cardIndex].id;
+      let genreString = `${this.store.stringAPI}${this.store.path}${movieId}/credits${this.store.key}&language=it-IT`;
+      axios.get(genreString).then((response) => {
+        this.store.castMovieList = response.data.cast;
+        // Prendo soltanto i primi 5 attori del cast
+        this.store.castMovieList.splice(5, this.store.castMovieList.length - 1);
+      });
+    }
   },
   created() {
-    // valorizzo stringa da passare alla chiamata axios
-    this.store.path = '/movie/';
-    let movieId = this.store.movies[this.store.cardIndex].id;
-    let genreString = `${this.store.stringAPI}${this.store.path}${movieId}${this.store.key}&language=it-IT`;
-    axios.get(genreString).then((response) => {
-      this.store.genreMovieList = response.data.genres;
-    });
+    this.genreAPI();
+    this.castAPI();
   }
 }
 </script>
@@ -40,13 +55,17 @@ export default {
       <h3>({{ this.store.movies[this.store.cardIndex].original_title }})</h3>
       <p>{{ this.store.movies[this.store.cardIndex].overview }}</p>
       <div class="genres">
-        <h3>Genres: </h3>
+        <h3>Generi: </h3>
         <ul>
           <li v-for="genre in this.store.genreMovieList">{{ genre.name }}</li>
         </ul>
       </div>
       <div class=" cast">
         <h3>Cast: </h3>
+        <ul>
+          <li v-for="actor in this.store.castMovieList"> {{ actor.name }} ({{ actor.character }})
+          </li>
+        </ul>
       </div>
     </div>
   </div>

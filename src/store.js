@@ -25,4 +25,6 @@ export const store = reactive({
   isCardOpen: false,
   // Generi film
   genreMovieList: [],
+  // Cast film
+  castMovieList: [],
 })
