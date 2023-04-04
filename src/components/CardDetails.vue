@@ -73,7 +73,7 @@ export default {
           :alt="this.store.movies.title">
         <img v-else src="/img/placeholder.svg" alt="Placeholder_Image">
       </div>
-      <div class="info-movie">
+      <div class="info">
         <h2>{{ this.store.movies[this.store.cardIndex].title }}</h2>
         <h3>({{ this.store.movies[this.store.cardIndex].original_title }})</h3>
         <p>{{ this.store.movies[this.store.cardIndex].overview }}</p>
@@ -103,7 +103,7 @@ export default {
           :alt="this.store.series.name">
         <img v-else src="/img/placeholder.svg" alt="Placeholder_Image">
       </div>
-      <div class="info-movie">
+      <div class="info">
         <h2>{{ this.store.series[this.store.cardIndex].name }}</h2>
         <h3>({{ this.store.series[this.store.cardIndex].original_name }})</h3>
         <p>{{ this.store.series[this.store.cardIndex].overview }}</p>
@@ -151,9 +151,11 @@ ul {
     }
   }
 
-  .info-movie {
+  .info {
+    align-self: flex-start;
+
     & *:not(li) {
-      padding: .5em 0;
+      padding-bottom: 1em;
     }
   }
 

@@ -126,8 +126,13 @@ export default {
     background-color: #212121;
     border-radius: 5px;
 
+    & * {
+      padding: .5em 0;
+    }
+
     .ratings {
       display: flex;
+      align-items: center;
 
       .star {
         color: yellow;
