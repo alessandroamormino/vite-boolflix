@@ -2,6 +2,7 @@ import { reactive } from 'vue';
 export const store = reactive({
   // prendo testo da input in AppHeader
   searchText: '',
+  // Variabile per stampare la ricerca effettuata nel titolo del documento
   searchResult: '',
   // dichiaro percorso iniziale API
   stringAPI: 'https://api.themoviedb.org/3',
