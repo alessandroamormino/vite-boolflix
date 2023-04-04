@@ -49,17 +49,20 @@ export default {
     align-items: center;
     gap: 1em;
 
+
+
     // flex
     &.blur {
       filter: blur(10px);
     }
   }
 
+
   #card-details {
-    position: absolute;
-    top: 10%;
+    position: fixed;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
   }
 }
 </style>
