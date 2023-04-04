@@ -45,6 +45,7 @@ export default {
     },
     // funzione per determinare se ricercare per serie tv o movie 
     readContentSearch() {
+      this.store.searchResult = this.store.searchText;
       this.store.contentSearch == 'movies' ? this.searchMovie() : this.store.contentSearch == 'shows' ? this.searchShows() : this.searchMovie();
     },
     // Funzione per ricercare i film

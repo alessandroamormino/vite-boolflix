@@ -24,8 +24,14 @@ export default {
 </script>
 <template>
   <div id="main-container">
-    <h1 v-if="this.store.contentSearch == '' || this.store.contentSearch == 'movies' ? true : false">Film</h1>
-    <h1 v-else>Serie TV</h1>
+    <h1 v-if="this.store.contentSearch == '' || this.store.contentSearch == 'movies' ? true : false">Film <span
+        v-if="this.store.searchResult != ''"> - Risultati per "{{ this.store.searchResult }}"</span>
+      <span v-else> - Trending</span>
+    </h1>
+    <h1 v-else>Serie TV <span v-if="this.store.searchResult != ''"> - Risultati per "{{ this.store.searchResult
+    }}"</span>
+      <span v-else> - Trending</span>
+    </h1>
     <div id="card-container" :class="this.store.isCardOpen ? 'blur' : ''">
       <AppCard v-if="this.store.contentSearch == '' || this.store.contentSearch == 'movies' ? true : false"
         v-for="(movie, index) in this.store.movies" :movies="movie" @click="cardDetails(index)">
@@ -42,14 +48,16 @@ export default {
   position: relative;
   padding: 2em;
 
+  h1 {
+    padding-bottom: 1em;
+  }
+
   #card-container {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
     gap: 1em;
-
-
 
     // flex
     &.blur {

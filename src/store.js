@@ -2,6 +2,7 @@ import { reactive } from 'vue';
 export const store = reactive({
   // prendo testo da input in AppHeader
   searchText: '',
+  searchResult: '',
   // dichiaro percorso iniziale API
   stringAPI: 'https://api.themoviedb.org/3',
   // Dichiaro vuota la path che popolerò al richiamo delle funzioni in App

@@ -134,6 +134,7 @@ ul {
 
   display: flex;
   flex-flow: row nowrap;
+  align-items: center;
   gap: 1em;
 
   width: 1000px;
