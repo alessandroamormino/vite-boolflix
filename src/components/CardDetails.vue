@@ -14,23 +14,43 @@ export default {
     },
     genreAPI() {
       // valorizzo stringa da passare alla chiamata axios
-      this.store.path = '/movie/';
-      let movieId = this.store.movies[this.store.cardIndex].id;
-      let genreString = `${this.store.stringAPI}${this.store.path}${movieId}${this.store.key}&language=it-IT`;
-      axios.get(genreString).then((response) => {
-        this.store.genreMovieList = response.data.genres;
-      });
+      if (this.store.contentSearch == '' || this.store.contentSearch == 'movies') {
+        this.store.path = '/movie/';
+        let movieId = this.store.movies[this.store.cardIndex].id;
+        let genreString = `${this.store.stringAPI}${this.store.path}${movieId}${this.store.key}&language=it-IT`;
+        axios.get(genreString).then((response) => {
+          this.store.genreMovieList = response.data.genres;
+        });
+      } else {
+        this.store.path = '/tv/';
+        let serieId = this.store.series[this.store.cardIndex].id;
+        let genreString = `${this.store.stringAPI}${this.store.path}${serieId}${this.store.key}&language=it-IT`;
+        axios.get(genreString).then((response) => {
+          this.store.genreSerieList = response.data.genres;
+        });
+      }
     },
     castAPI() {
       // valorizzo stringa da passare alla chiamata axios
-      this.store.path = '/movie/';
-      let movieId = this.store.movies[this.store.cardIndex].id;
-      let genreString = `${this.store.stringAPI}${this.store.path}${movieId}/credits${this.store.key}&language=it-IT`;
-      axios.get(genreString).then((response) => {
-        this.store.castMovieList = response.data.cast;
-        // Prendo soltanto i primi 5 attori del cast
-        this.store.castMovieList.splice(5, this.store.castMovieList.length - 1);
-      });
+      if (this.store.contentSearch == '' || this.store.contentSearch == 'movies') {
+        this.store.path = '/movie/';
+        let movieId = this.store.movies[this.store.cardIndex].id;
+        let genreString = `${this.store.stringAPI}${this.store.path}${movieId}/credits${this.store.key}&language=it-IT`;
+        axios.get(genreString).then((response) => {
+          this.store.castMovieList = response.data.cast;
+          // Prendo soltanto i primi 5 attori del cast
+          this.store.castMovieList.splice(5, this.store.castMovieList.length - 1);
+        });
+      } else {
+        this.store.path = '/tv/';
+        let serieId = this.store.series[this.store.cardIndex].id;
+        let genreString = `${this.store.stringAPI}${this.store.path}${serieId}/credits${this.store.key}&language=it-IT`;
+        axios.get(genreString).then((response) => {
+          this.store.castSerieList = response.data.cast;
+          // Prendo soltanto i primi 5 attori del cast
+          this.store.castSerieList.splice(5, this.store.castSerieList.length - 1);
+        });
+      }
     }
   },
   created() {
@@ -41,31 +61,64 @@ export default {
 </script>
 <template>
   <div id="card-details">
-    <div class="close" @click="closeDetail()">
-      <font-awesome-icon :icon="['fas', 'xmark']" />
-    </div>
-    <div class="card-img">
-      <img v-if="this.store.movies[this.store.cardIndex].poster_path != null"
-        :src="this.store.baseURL + 'w342' + this.store.movies[this.store.cardIndex].poster_path"
-        :alt="this.store.movies.title">
-      <img v-else src="/img/placeholder.svg" alt="Placeholder_Image">
-    </div>
-    <div class="info-movie">
-      <h2>{{ this.store.movies[this.store.cardIndex].title }}</h2>
-      <h3>({{ this.store.movies[this.store.cardIndex].original_title }})</h3>
-      <p>{{ this.store.movies[this.store.cardIndex].overview }}</p>
-      <div class="genres">
-        <h3>Generi: </h3>
-        <ul>
-          <li v-for="genre in this.store.genreMovieList">{{ genre.name }}</li>
-        </ul>
+    <!-- Movies -->
+    <div class="detail" v-if="this.store.contentSearch == '' || this.store.contentSearch == 'movies' ? true : false">
+      <div class="close" @click="closeDetail()">
+        <font-awesome-icon :icon="['fas', 'xmark']" />
       </div>
-      <div class=" cast">
-        <h3>Cast: </h3>
-        <ul>
-          <li v-for="actor in this.store.castMovieList"> {{ actor.name }} ({{ actor.character }})
-          </li>
-        </ul>
+      <div class="card-img">
+        <img v-if="this.store.movies[this.store.cardIndex].poster_path != null"
+          :src="this.store.baseURL + 'w342' + this.store.movies[this.store.cardIndex].poster_path"
+          :alt="this.store.movies.title">
+        <img v-else src="/img/placeholder.svg" alt="Placeholder_Image">
+      </div>
+      <div class="info-movie">
+        <h2>{{ this.store.movies[this.store.cardIndex].title }}</h2>
+        <h3>({{ this.store.movies[this.store.cardIndex].original_title }})</h3>
+        <p>{{ this.store.movies[this.store.cardIndex].overview }}</p>
+        <div class="genres">
+          <h3>Generi: </h3>
+          <ul>
+            <li v-for="genre in this.store.genreMovieList">{{ genre.name }}</li>
+          </ul>
+        </div>
+        <div class=" cast">
+          <h3>Cast: </h3>
+          <ul>
+            <li v-for="actor in this.store.castMovieList"> {{ actor.name }} ({{ actor.character }})
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Series -->
+    <div class="detail" v-else>
+      <div class="close" @click="closeDetail()">
+        <font-awesome-icon :icon="['fas', 'xmark']" />
+      </div>
+      <div class="card-img">
+        <img v-if="this.store.series[this.store.cardIndex].poster_path != null"
+          :src="this.store.baseURL + 'w342' + this.store.series[this.store.cardIndex].poster_path"
+          :alt="this.store.series.name">
+        <img v-else src="/img/placeholder.svg" alt="Placeholder_Image">
+      </div>
+      <div class="info-movie">
+        <h2>{{ this.store.series[this.store.cardIndex].name }}</h2>
+        <h3>({{ this.store.series[this.store.cardIndex].original_name }})</h3>
+        <p>{{ this.store.series[this.store.cardIndex].overview }}</p>
+        <div class="genres">
+          <h3>Generi: </h3>
+          <ul>
+            <li v-for="genre in this.store.genreSeriesList">{{ genre.name }}</li>
+          </ul>
+        </div>
+        <div class=" cast">
+          <h3>Cast: </h3>
+          <ul>
+            <li v-for="actor in this.store.castSerieList"> {{ actor.name }} ({{ actor.character }})
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -76,7 +129,7 @@ ul {
   list-style-type: disc;
 }
 
-#card-details {
+#card-details .detail {
   position: relative;
 
   display: flex;

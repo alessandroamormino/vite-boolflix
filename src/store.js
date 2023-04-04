@@ -27,4 +27,8 @@ export const store = reactive({
   genreMovieList: [],
   // Cast film
   castMovieList: [],
+  // Generi serie tv
+  genreSerieList: [],
+  // Cast serie tv
+  castSerieList: [],
 })

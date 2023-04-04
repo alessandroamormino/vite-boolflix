@@ -22,7 +22,7 @@ export default {
     // Funzione che fa la chiamata axios dell'API
     callAPI(string) {
       axios.get(string).then((res) => {
-        if (this.store.contentSearch == 'movies') {
+        if (this.store.contentSearch == '' || this.store.contentSearch == 'movies') {
           if (res.data.results.length == 0) {
             this.store.movies = [];
             this.store.hasResult = false;
@@ -30,20 +30,12 @@ export default {
             this.store.movies = res.data.results;
             this.store.hasResult = true;
           }
-        } else if (this.store.contentSearch == 'shows') {
+        } else {
           if (res.data.results.length == 0) {
             this.store.series = [];
             this.store.hasResult = false;
           } else {
             this.store.series = res.data.results;
-            this.store.hasResult = true;
-          }
-        } else {
-          if (res.data.results.length == 0) {
-            this.store.movies = [];
-            this.store.hasResult = false;
-          } else {
-            this.store.movies = res.data.results;
             this.store.hasResult = true;
           }
         }
@@ -82,22 +74,12 @@ export default {
         requestAPI = `${this.store.stringAPI}${this.store.path}${this.store.key}${this.store.parameters}`;
         this.callAPI(requestAPI);
       } else {
-        // se lancio una ricerca a vuoto mi restituisce i film trending della settimana
+        // se lancio una ricerca a vuoto mi restituisce le serie tv trending della settimana
         this.store.path = '/trending/tv/week';
-        requestAPI = `${this.store.stringAPI}${this.store.path}${this.store.key}`;
+        requestAPI = `${this.store.stringAPI}${this.store.path}${this.store.key}&language=it-IT&append_to_response=images&include_image_language=it`;
         this.callAPI(requestAPI);
       }
     },
-    // genreMovieAPI() {
-    //   // valorizzo stringa da passare alla chiamata axios
-    //   this.store.path = '/movie/';
-    //   let movieId = this.store.movies[this.store.cardIndex].id;
-    //   let genreString = `${this.store.stringAPI}${this.store.path}${movieId}${this.store.key}&language=it-IT`;
-    //   axios.get(genreString).then((response) => {
-    //     this.genreMovieList = response.data.genres;
-    //     console.log(this.genreMovieList);
-    //   });
-    // },
   },
   components: {
     AppHeader,
@@ -110,7 +92,6 @@ export default {
 <template>
   <AppHeader @performSearch="readContentSearch()" @showsTrending="searchShows()"></AppHeader>
   <AppError v-if="this.store.hasResult == false"></AppError>
-  <!-- <AppMain v-if="this.store.hasResult" @cardClick="genreMovieAPI()"></AppMain> -->
   <AppMain v-if="this.store.hasResult"></AppMain>
 </template>
 

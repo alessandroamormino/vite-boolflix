@@ -52,6 +52,7 @@ export default {
     // aggiorno le flag ad ogni aggiornamento del DOM
     this.flag();
   },
+  emits: ['seriesClick'],
 }
 </script>
 <template>
@@ -74,7 +75,7 @@ export default {
     </div>
   </div>
   <!-- Series -->
-  <div v-else class="card">
+  <div v-else class="card" @click="$emit('seriesClick')">
     <div class="card-img">
       <img v-if="series.poster_path != null" :src="this.store.baseURL + 'w342' + series.poster_path" :alt="series.name">
       <img v-else src="/img/placeholder.svg" alt="Placeholder_Image">
