@@ -17,6 +17,7 @@ export default {
     requestAPI = `${this.store.stringAPI}${this.store.path}${this.store.key}&language=it-IT&append_to_response=images&include_image_language=it`;
     // Richiamo funzione che fa la chiamata axios dell'API
     this.callAPI(requestAPI);
+    this.callGenreAPI();
   },
   methods: {
     // Funzione che fa la chiamata axios dell'API
@@ -81,6 +82,13 @@ export default {
         this.callAPI(requestAPI);
       }
     },
+    callGenreAPI() {
+      this.store.path = '/genre/movie/list';
+      requestAPI = `${this.store.stringAPI}${this.store.path}${this.store.key}&language=it-IT`;
+      axios.get(requestAPI).then((res) => {
+        this.store.allGenreList = res.data.genres;
+      });
+    }
   },
   components: {
     AppHeader,

@@ -33,7 +33,7 @@ export default {
       <span v-else> - Trending</span>
     </h1>
     <div id="card-container" :class="this.store.isCardOpen ? 'blur' : ''">
-      <AppCard v-if="this.store.contentSearch == '' || this.store.contentSearch == 'movies' ? true : false"
+      <AppCard v-if="(this.store.contentSearch == '' || this.store.contentSearch == 'movies' ? true : false)"
         v-for="(movie, index) in this.store.movies" :movies="movie" @click="cardDetails(index)">
       </AppCard>
       <AppCard v-else v-for="(serie, index) in this.store.series" :series="serie" @seriesClick="cardDetails(index)">

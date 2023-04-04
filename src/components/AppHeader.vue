@@ -5,6 +5,7 @@ export default {
   data() {
     return {
       store,
+      isDropdownOpen: true,
     }
   },
   emit: ['performSearch', 'showsTrending'],
@@ -28,6 +29,16 @@ export default {
       </ul>
     </div>
     <div class="nav-right">
+      <span id="open" @click="this.isDropdownOpen = !this.isDropdownOpen">X</span>
+      <div v-show="this.isDropdownOpen" class="dropdown">
+        <ul>
+          <li v-for="genre in this.store.allGenreList">
+            <input type="checkbox" :id="genre.id" :value="genre.id" v-model="this.store.selectedGenre">
+            <label :for="genre.id">{{ genre.name }}</label>
+          </li>
+        </ul>
+        <div>Checked names: {{ this.store.selectedGenre }}</div>
+      </div>
       <input type="text" v-model="store.searchText" @keyup.enter="$emit('performSearch')" placeholder="Cerca un titolo..">
       <button class="btn" @click="$emit('performSearch')">Search</button>
     </div>
@@ -85,6 +96,8 @@ nav {
   }
 
   .nav-right {
+    position: relative;
+    // position
     display: flex;
     gap: 1em;
 
@@ -103,6 +116,31 @@ nav {
       padding: .5em 1em;
       background-color: #fff;
       border: none;
+    }
+
+    .dropdown {
+      position: absolute;
+      top: 20px;
+      left: -130px;
+      // position
+      background-color: #212121;
+      border-radius: 5px;
+
+      ul {
+        padding: .5em 0;
+
+        li {
+          padding: .3em 1em;
+
+          &:hover {
+            background-color: #555555;
+          }
+
+          label {
+            padding-left: .5em;
+          }
+        }
+      }
     }
   }
 
