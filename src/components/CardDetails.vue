@@ -27,6 +27,7 @@ export default {
         let genreString = `${this.store.stringAPI}${this.store.path}${serieId}${this.store.key}&language=it-IT`;
         axios.get(genreString).then((response) => {
           this.store.genreSerieList = response.data.genres;
+          console.log(this.store.genreSerieList);
         });
       }
     },
@@ -109,7 +110,7 @@ export default {
         <div class="genres">
           <h3>Generi: </h3>
           <ul>
-            <li v-for="genre in this.store.genreSeriesList">{{ genre.name }}</li>
+            <li v-for=" genre in this.store.genreSerieList">{{ genre.name }}</li>
           </ul>
         </div>
         <div class=" cast">
