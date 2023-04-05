@@ -35,6 +35,5 @@ export const store = reactive({
   castSerieList: [],
   // Creo un array di tutti i generi film possibili come risultato della chiamata API
   allGenreList: [],
-  // Creo un array per memorizzarmi i filtri impostati sui generi
   selectedGenre: [],
 })
